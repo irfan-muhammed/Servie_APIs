@@ -219,7 +219,17 @@ def format_commit(commit: Commit) -> str:
 
 def throw_error():
     time.sleep(3)
-    return {"status": 500}
+    ERROR_MESSAGES = [
+        "Internal server error",
+        "Database connection failed",
+        "Timeout while communicating with upstream service",
+        "Unexpected null value encountered",
+        "Rate limit exceeded",
+        "Configuration load failed",
+        "Dependency service unavailable",
+        "Failed to allocate memory"
+    ]
+    return {"status": 500, "msg": random.choice(ERROR_MESSAGES)}
 
 @app.get("/")
 def read_root():
